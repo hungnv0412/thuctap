@@ -1,0 +1,50 @@
+import android.content.Context
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.models.Contact
+import com.example.myapplication.R
+
+class ContactAdapter(
+    private val context: Context,
+    private val contactList: List<Contact>,
+    private val onItemClick: ((Contact) -> Unit),
+    private val onItemLongClick: ((Contact) -> Unit)
+): RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
+    class ContactViewHolder(
+        private val view: View,
+    ): RecyclerView.ViewHolder(view){
+        val nameTextView : TextView = view.findViewById(R.id.textName)
+        val phoneTextView : TextView = view.findViewById(R.id.textPhone)
+        val avtImageView : ImageView = view.findViewById(R.id.imageAvatar)
+
+
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
+        val adapterLayout = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_contact, parent, false)
+        return ContactViewHolder(adapterLayout)
+    }
+
+    override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
+        val item = contactList[position]
+        holder.nameTextView.text = item.name
+        holder.phoneTextView.text = item.phoneNumber
+        holder.avtImageView.setImageResource(item.avatar)
+        holder.itemView.setOnClickListener {
+            onItemClick(item)
+        }
+        holder.itemView.setOnLongClickListener {
+            onItemLongClick(item)
+            true
+        }
+
+    }
+    override fun getItemCount(): Int {
+        return contactList.size
+    }
+}
