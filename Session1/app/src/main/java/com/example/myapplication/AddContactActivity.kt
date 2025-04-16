@@ -12,10 +12,10 @@ class AddContactActivity: AppCompatActivity() {
         binding = AddContactActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.buttonSave.setOnClickListener {
-            val name = binding.newTextName.text.toString()
-            val phoneNumber = binding.newTextPhone.text.toString()
-            val email = binding.newTextEmail.text.toString()
-            val note = binding.newTextNote.text.toString()
+            val name = binding.nameContent.text.toString()
+            val phoneNumber = binding.phoneContent.text.toString()
+            val email = binding.emailContent.text.toString()
+            val note = binding.noteContent.text.toString()
             if (name.isEmpty()) {
                 binding.newTextName.error = "Name cannot be empty"
                 return@setOnClickListener
