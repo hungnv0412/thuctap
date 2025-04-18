@@ -68,6 +68,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout-compose:1.1.0-beta01")
     implementation("androidx.recyclerview:recyclerview:1.3.1")
     implementation("com.google.android.material:material:1.11.0")
+    implementation ("androidx.compose.material3:material3:1.2.0-alpha08")
     //navigation
 
 }

@@ -10,12 +10,15 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.DismissValue
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.VelocityTrackerCompat.recycle
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.databinding.MainActivityBinding
@@ -55,7 +58,9 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, AddContactActivity::class.java)
             startActivityForResult(intent, 1)
         }
+
     }
+
     fun showDetail(contact: Contact) {
         // Handle the click event here
         // For example, you can start a new activity to show contact details
@@ -93,4 +98,5 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Undo clicked", Toast.LENGTH_SHORT).show()
         }.show()
     }
+
 }

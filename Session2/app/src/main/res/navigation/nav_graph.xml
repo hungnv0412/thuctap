@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/contactFragment">
+    <fragment
+        android:id="@+id/addContactFragment"
+        android:name="com.example.session2.ui.add.AddContactFragment"
+        android:label="AddContactFragment" >
+        <action
+            android:id="@+id/action_addContactFragment_to_contactFragment"
+            app:destination="@id/contactFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/contactFragment"
+        android:name="com.example.session2.ui.contact.ContactFragment"
+        android:label="ContactFragment" >
+        <action
+            android:id="@+id/action_contactFragment_to_addContactFragment"
+            app:destination="@id/addContactFragment" />
+        <action
+            android:id="@+id/action_contactFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="SettingsFragment"
+        android:label="SettingsFragment" >
+        <action
+            android:id="@+id/action_settingsFragment_to_contactFragment"
+            app:destination="@id/contactFragment" />
+    </fragment>
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.example.session2.MainActivity"
+        android:label="MainActivity" />
+</navigation>

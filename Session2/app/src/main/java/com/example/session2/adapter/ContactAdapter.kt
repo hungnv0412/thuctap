@@ -1,18 +1,18 @@
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.models.Contact
-import com.example.myapplication.R
+import com.example.session2.R
+import com.example.session2.model.Contact
+import com.example.session2.ui.contact.ContactFragment
 
 class ContactAdapter(
-    private val context: Context,
+    private val context: ContactFragment,
     private val contactList: List<Contact>,
-    private val onItemClick: ((Contact) -> Unit),
-    private val onItemLongClick: ((Contact) -> Unit),
+    private val onItemClick: (Contact) -> Unit,
+    private val onItemLongClick: (Contact) -> Unit,
 ): RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
     class ContactViewHolder(
         private val view: View,
@@ -47,4 +47,5 @@ class ContactAdapter(
     override fun getItemCount(): Int {
         return contactList.size
     }
+
 }
