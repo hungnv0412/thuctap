@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import com.example.session2.R
 import com.example.session2.databinding.AddContactFragmentBinding
 import com.example.session2.model.Contact
@@ -42,7 +41,7 @@ class AddContactFragment : Fragment() {
             }
 
             if (name.isNotEmpty() && phoneNumber.isNotEmpty() && email.isNotEmpty()) {
-                val newContact = Contact(name, phoneNumber, R.drawable.avt2, email, note)
+                val newContact = Contact(0,name, phoneNumber, R.drawable.avt2, email, note)
                 viewModel.addContact(newContact)
             }
             // Navigate back to the previous screen

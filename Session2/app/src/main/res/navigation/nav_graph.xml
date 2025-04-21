@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_contactFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_contactFragment_to_detailContactFragment"
+            app:destination="@id/detailContactFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -29,6 +32,14 @@
         <action
             android:id="@+id/action_settingsFragment_to_contactFragment"
             app:destination="@id/contactFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailContactFragment"
+        android:name="com.example.session2.ui.contact.DetailContactFragment"
+        android:label="DetailContactFragment" >
+        <argument
+            android:name="contactId"
+            app:argType="integer" />
     </fragment>
     <activity
         android:id="@+id/mainActivity"
