@@ -21,17 +21,16 @@ class DetailContactFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = DetailContactFragmentBinding.inflate(inflater, container, false)
-        val contactId = args.contactId
-        val contact = viewModel.getContactById(contactId)
-        contact?.let {
-            binding.textNameDetail.text = it.name
-            binding.textPhoneDetail.text = it.phoneNumber
-            binding.textEmailDetail.text = it.email
-            binding.textNoteDetail.text = it.note
-        } ?: run {
-            // Handle case where contact is not found
-            binding.textNameDetail.text = "Contact not found"
-        }
+
         return binding.root
     }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val contact = viewModel.getContactById(args.contactId)
+        binding.textNameDetail.text = contact?.name
+        binding.textPhoneDetail.text = contact?.phoneNumber
+        binding.textEmailDetail.text = contact?.email
+        binding.textNoteDetail.text = contact?.note
+    }
+
 }

@@ -31,4 +31,8 @@ class ContactViewModel @Inject constructor() : ViewModel() {
     fun getContactById(id: Int): Contact? {
         return _contacts.value?.find { it.id == id }
     }
+    fun deleteContact(contact: Contact) {
+        _contacts.value?.remove(contact)
+        _contacts.value = _contacts.value
+    }
 }

@@ -6,7 +6,7 @@
     <fragment
         android:id="@+id/addContactFragment"
         android:name="com.example.session2.ui.add.AddContactFragment"
-        android:label="AddContactFragment" >
+        android:label="Add Contact" >
         <action
             android:id="@+id/action_addContactFragment_to_contactFragment"
             app:destination="@id/contactFragment" />
@@ -14,7 +14,7 @@
     <fragment
         android:id="@+id/contactFragment"
         android:name="com.example.session2.ui.contact.ContactFragment"
-        android:label="ContactFragment" >
+        android:label="Contacts" >
         <action
             android:id="@+id/action_contactFragment_to_addContactFragment"
             app:destination="@id/addContactFragment" />
@@ -28,7 +28,7 @@
     <fragment
         android:id="@+id/settingsFragment"
         android:name="SettingsFragment"
-        android:label="SettingsFragment" >
+        android:label="Settings" >
         <action
             android:id="@+id/action_settingsFragment_to_contactFragment"
             app:destination="@id/contactFragment" />
@@ -36,7 +36,7 @@
     <fragment
         android:id="@+id/detailContactFragment"
         android:name="com.example.session2.ui.contact.DetailContactFragment"
-        android:label="DetailContactFragment" >
+        android:label="Detail" >
         <argument
             android:name="contactId"
             app:argType="integer" />

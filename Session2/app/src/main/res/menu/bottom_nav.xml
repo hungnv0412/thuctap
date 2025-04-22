@@ -8,7 +8,7 @@
 
     <item
         android:id="@+id/addContactFragment"
-        android:title="Contacts"
+        android:title="Add Contacts"
         android:icon="@drawable/icon_add_contact"
         android:actionLayout="@layout/add_contact_fragment"/>
 

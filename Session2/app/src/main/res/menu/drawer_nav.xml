@@ -3,19 +3,19 @@
     <group>
         <item
             android:id="@+id/contactFragment"
-            android:title="Danh bạ"
+            android:title="Home"
             android:icon="@drawable/icon_home" />
         <item
             android:id="@+id/addContactFragment"
-            android:title="Thêm"
+            android:title="Add Contact"
             android:icon="@drawable/icon_add_contact" />
         <item
             android:id="@+id/settingsFragment"
-            android:title="Cài đặt"
+            android:title="Settings"
             android:icon="@drawable/icon_settings" />
     </group>
     <item
         android:id="@+id/logout"
-        android:title="Đăng xuất"
+        android:title="Logout"
         android:icon="@drawable/icon_logout" />
 </menu>

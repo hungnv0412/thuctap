@@ -6,18 +6,6 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <!-- Title -->
-    <TextView
-        android:id="@+id/tvSettingsTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Settings"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="24dp" />
 
     <!-- Switch 1: Notifications -->
     <androidx.appcompat.widget.SwitchCompat
@@ -25,7 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Enable Notifications"
-        app:layout_constraintTop_toBottomOf="@id/tvSettingsTitle"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="16dp" />

@@ -5,46 +5,67 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.session2.R
+import com.example.session2.model.Contact
 
-class ContactFragment : androidx.fragment.app.Fragment() {
+
+class ContactFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var contactAdapter: ContactAdapter
-    private val viewmodel: ContactViewModel by activityViewModels()
+    private val viewModel: ContactViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.contact_fragment, container, false)
+    ): View {
+        return inflater.inflate(R.layout.contact_fragment, container, false)
+    }
 
-        // Initialize RecyclerView
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Khởi tạo RecyclerView
         recyclerView = view.findViewById(R.id.recyclerViewContacts)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        // Initialize Adapter with ViewModel data
-        contactAdapter = ContactAdapter(this, viewmodel.getContacts(),
+        // Khởi tạo adapter
+        contactAdapter = ContactAdapter(
+            this,
+            viewModel.getContacts().toMutableList(),
             onItemClick = { contact ->
-                val action = ContactFragmentDirections.actionContactFragmentToDetailContactFragment(contact.id)
+                val action = ContactFragmentDirections
+                    .actionContactFragmentToDetailContactFragment(contact.id)
                 findNavController().navigate(action)
             },
             onItemLongClick = { contact ->
-                // Handle item long click
+                showDiaglogDelete(contact)
             }
         )
         recyclerView.adapter = contactAdapter
-
-        viewmodel.contacts.observe(viewLifecycleOwner){contact ->
-            contactAdapter.notifyItemInserted(contact.size - 1)
+        viewModel.contacts.observe(viewLifecycleOwner) { contacts ->
+            contactAdapter.updateContacts(contacts)
         }
-
-        return view
+    }
+    private fun showDiaglogDelete(contact: Contact) {
+        val dialog = AlertDialog.Builder(requireContext())
+            .setTitle("Xoá liên hệ")
+            .setMessage("Bạn có chắc chắn muốn xoá ${contact.name} không?")
+            .setPositiveButton("Có") { _, _ ->
+                viewModel.deleteContact(contact)
+                contactAdapter.updateContacts(viewModel.getContacts())
+                Toast.makeText(requireContext(), "Đã xoá ${contact.name}", Toast.LENGTH_SHORT).show()
+            }
+            .setNegativeButton("Không", null)
+            .create()
+        dialog.show()
     }
 }

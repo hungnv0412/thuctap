@@ -20,6 +20,10 @@ class AddContactFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = AddContactFragmentBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         binding.buttonSave.setOnClickListener {
             val name = binding.nameContent.text.toString()
@@ -40,18 +44,13 @@ class AddContactFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            if (name.isNotEmpty() && phoneNumber.isNotEmpty() && email.isNotEmpty()) {
-                val newContact = Contact(0,name, phoneNumber, R.drawable.avt2, email, note)
-                viewModel.addContact(newContact)
-            }
-            // Navigate back to the previous screen
-            requireActivity().supportFragmentManager.popBackStack()
-        }
-        binding.buttonDiscard.setOnClickListener {
-            // Discard changes and navigate back
-            requireActivity().supportFragmentManager.popBackStack()
+            val contact = Contact(0,name, phoneNumber,R.drawable.avt2, email, note)
+            viewModel.addContact(contact)
+            requireActivity().onBackPressed()
         }
 
-        return binding.root
+        binding.buttonDiscard.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
     }
 }

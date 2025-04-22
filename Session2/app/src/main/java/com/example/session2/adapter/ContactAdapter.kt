@@ -10,7 +10,7 @@ import com.example.session2.ui.contact.ContactFragment
 
 class ContactAdapter(
     private val context: ContactFragment,
-    private val contactList: List<Contact>,
+    private val contactList: MutableList<Contact>,
     private val onItemClick: (Contact) -> Unit,
     private val onItemLongClick: (Contact) -> Unit,
 ): RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
@@ -46,6 +46,11 @@ class ContactAdapter(
     }
     override fun getItemCount(): Int {
         return contactList.size
+    }
+    fun updateContacts(newContacts: List<Contact>) {
+        contactList.clear()
+        contactList.addAll(newContacts)
+        notifyDataSetChanged()
     }
 
 }
