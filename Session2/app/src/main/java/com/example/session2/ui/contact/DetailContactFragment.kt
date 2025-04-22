@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
-import com.example.session2.R
 import com.example.session2.databinding.DetailContactFragmentBinding
+import com.example.session2.viewmodel.ContactViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DetailContactFragment : Fragment() {
     val viewModel: ContactViewModel by activityViewModels()
     private val args: DetailContactFragmentArgs by navArgs()

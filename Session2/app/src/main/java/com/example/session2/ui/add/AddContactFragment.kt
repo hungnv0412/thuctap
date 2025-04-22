@@ -9,7 +9,10 @@ import androidx.fragment.app.activityViewModels
 import com.example.session2.R
 import com.example.session2.databinding.AddContactFragmentBinding
 import com.example.session2.model.Contact
+import com.example.session2.viewmodel.ContactViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AddContactFragment : Fragment() {
     private lateinit var binding: AddContactFragmentBinding
     private val viewModel: ContactViewModel by activityViewModels()

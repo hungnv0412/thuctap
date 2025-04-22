@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="SettingsFragment"
+        android:name="com.example.session2.ui.settings.SettingsFragment"
         android:label="Settings" >
         <action
             android:id="@+id/action_settingsFragment_to_contactFragment"
