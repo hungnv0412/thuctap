@@ -23,7 +23,6 @@ class DetailContactFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = DetailContactFragmentBinding.inflate(inflater, container, false)
-
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

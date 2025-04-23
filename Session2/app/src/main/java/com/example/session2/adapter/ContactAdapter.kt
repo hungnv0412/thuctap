@@ -22,8 +22,6 @@ class ContactAdapter(
         val nameTextView : TextView = view.findViewById(R.id.textName)
         val phoneTextView : TextView = view.findViewById(R.id.textPhone)
         val avtImageView : ImageView = view.findViewById(R.id.imageAvatar)
-
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {

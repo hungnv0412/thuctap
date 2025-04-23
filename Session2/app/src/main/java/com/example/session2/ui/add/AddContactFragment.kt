@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.session2.R
 import com.example.session2.databinding.AddContactFragmentBinding
 import com.example.session2.model.Contact
@@ -49,9 +50,9 @@ class AddContactFragment : Fragment() {
 
             val contact = Contact(0,name, phoneNumber,R.drawable.avt2, email, note)
             viewModel.addContact(contact)
-            requireActivity().onBackPressed()
+            val action = AddContactFragmentDirections.actionAddContactFragmentToContactFragment()
+            findNavController().navigate(action)
         }
-
         binding.buttonDiscard.setOnClickListener {
             requireActivity().onBackPressed()
         }

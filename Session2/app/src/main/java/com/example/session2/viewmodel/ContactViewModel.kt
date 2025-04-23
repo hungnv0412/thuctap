@@ -10,7 +10,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ContactViewModel @Inject constructor(
-    // Inject any dependencies you need here
     private val contactRepository: ContactRepository
 ) : ViewModel() {
     private val _contacts = MutableLiveData<List<Contact>>(contactRepository.getContacts().toMutableList())

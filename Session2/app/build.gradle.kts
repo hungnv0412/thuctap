@@ -87,6 +87,13 @@ dependencies {
 
     // JSON serialization library, works with the Kotlin serialization plugin
     implementation(libs.kotlinx.serialization.json)
+    // Room
+    implementation ("androidx.room:room-runtime:2.7.0")
+    kapt ("androidx.room:room-compiler:2.7.0")
+
+// Optional - Room with Kotlin Coroutines support
+    implementation ("androidx.room:room-ktx:2.7.0")
+
 }
 kapt {
     correctErrorTypes = true
