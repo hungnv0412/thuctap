@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <item
+            android:id="@+id/contactFragment"
+            android:title="Home"
+            android:icon="@drawable/icon_home" />
+        <item
+            android:id="@+id/addContactFragment"
+            android:title="Add Contact"
+            android:icon="@drawable/icon_add_contact" />
+        <item
+            android:id="@+id/settingsFragment"
+            android:title="Settings"
+            android:icon="@drawable/icon_settings" />
+    </group>
+    <item
+        android:id="@+id/logout"
+        android:title="Logout"
+        android:icon="@drawable/icon_logout" />
+</menu>

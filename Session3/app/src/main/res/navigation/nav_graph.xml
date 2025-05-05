@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/addContactFragment"
-        android:name="com.example.session2.ui.add.AddContactFragment"
+        android:name="com.example.session3.ui.add.AddContactFragment"
         android:label="Add Contact" >
         <action
             android:id="@+id/action_addContactFragment_to_contactFragment"
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/contactFragment"
-        android:name="com.example.session2.ui.contact.ContactFragment"
+        android:name="com.example.session3.ui.contact.ContactFragment"
         android:label="Contacts" >
         <action
             android:id="@+id/action_contactFragment_to_addContactFragment"
@@ -44,7 +44,7 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.session2.ui.settings.SettingsFragment"
+        android:name="com.example.session3.ui.settings.SettingsFragment"
         android:label="Settings" >
         <action
             android:id="@+id/action_settingsFragment_to_contactFragment"
@@ -56,7 +56,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailContactFragment"
-        android:name="com.example.session2.ui.contact.DetailContactFragment"
+        android:name="com.example.session3.ui.contact.DetailContactFragment"
         android:label="Detail" >
         <argument
             android:name="contactId"
@@ -64,6 +64,6 @@
     </fragment>
     <activity
         android:id="@+id/mainActivity"
-        android:name="com.example.session2.MainActivity"
+        android:name="com.example.session3.MainActivity"
         android:label="MainActivity" />
 </navigation>

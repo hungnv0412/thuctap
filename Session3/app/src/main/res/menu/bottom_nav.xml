@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/contactFragment"
+        android:title="Home"
+        android:icon="@drawable/icon_home"
+        android:actionLayout="@layout/contact_fragment"/>
+
+    <item
+        android:id="@+id/addContactFragment"
+        android:title="Add Contacts"
+        android:icon="@drawable/icon_add_contact"
+        android:actionLayout="@layout/add_contact_fragment"/>
+
+    <item
+        android:id="@+id/settingsFragment"
+        android:title="Settings"
+        android:icon="@drawable/icon_settings"
+        android:actionLayout="@layout/settings_fragment"/>
+  
+</menu>
