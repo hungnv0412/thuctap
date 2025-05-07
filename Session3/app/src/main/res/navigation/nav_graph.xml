@@ -62,8 +62,4 @@
             android:name="contactId"
             app:argType="integer" />
     </fragment>
-    <activity
-        android:id="@+id/mainActivity"
-        android:name="com.example.session3.MainActivity"
-        android:label="MainActivity" />
 </navigation>

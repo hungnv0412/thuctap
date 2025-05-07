@@ -1,17 +1,22 @@
-package com.example.session3.sharedPreferences
 import android.content.Context
-import dagger.hilt.android.qualifiers.ApplicationContext
-import javax.inject.Inject
+import android.content.SharedPreferences
 
-class UserPreferences @Inject constructor(@ApplicationContext context: Context) {
-    private val sharedPreferences = context.getSharedPreferences(KEY_USER_NAME, Context.MODE_PRIVATE)
-    fun saveUserName(name: String) {
-        sharedPreferences.edit().putString(KEY_USER_NAME, name).apply()
+object UserPreferences {
+    private const val PREFS_NAME = "user_prefs"
+    private const val KEY_USERNAME = "username"
+
+    private lateinit var sharedPreferences: SharedPreferences
+
+    fun init(context: Context) {
+        sharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
     }
-    fun getUserName(): String? {
-        return sharedPreferences.getString(KEY_USER_NAME, "")?:""
+
+    fun setUsername(username: String) {
+        sharedPreferences.edit().putString(KEY_USERNAME, username).apply()
     }
-    companion object {
-        private const val KEY_USER_NAME = "user_name"
+
+    fun getUsername(): String? {
+        return sharedPreferences.getString(KEY_USERNAME, "")?:"NVH"
     }
+
 }
