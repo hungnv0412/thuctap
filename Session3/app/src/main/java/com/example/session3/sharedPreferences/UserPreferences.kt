@@ -1,3 +1,5 @@
+package com.example.session3.sharedPreferences
+
 import android.content.Context
 import android.content.SharedPreferences
 
@@ -16,7 +18,7 @@ object UserPreferences {
     }
 
     fun getUsername(): String? {
-        return sharedPreferences.getString(KEY_USERNAME, "")?:"NVH"
+        return sharedPreferences.getString(KEY_USERNAME, "")
     }
 
 }

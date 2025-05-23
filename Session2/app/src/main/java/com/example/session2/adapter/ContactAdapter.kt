@@ -7,12 +7,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.session2.R
-import com.example.session2.model.Contact
+import com.example.session2.data.Contact
 import com.example.session2.ui.contact.ContactFragment
 
 class ContactAdapter(
     private val context: ContactFragment,
-    private val contactList: MutableList<Contact>,
+    private var contactList: List<Contact>,
     private val onItemClick: (Contact) -> Unit,
     private val onItemLongClick: (Contact) -> Unit,
 ): RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
@@ -34,7 +34,7 @@ class ContactAdapter(
         val item = contactList[position]
         holder.nameTextView.text = item.name
         holder.phoneTextView.text = item.phoneNumber
-        holder.avtImageView.setImageResource(item.avatar)
+        holder.avtImageView.setImageResource(R.drawable.avt2)
         holder.itemView.setOnClickListener {
             onItemClick(item)
         }
@@ -48,8 +48,7 @@ class ContactAdapter(
         return contactList.size
     }
     fun updateContacts(newContacts: List<Contact>) {
-        contactList.clear()
-        contactList.addAll(newContacts)
+        contactList= newContacts
         notifyDataSetChanged()
     }
 

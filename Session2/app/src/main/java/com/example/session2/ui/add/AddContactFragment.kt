@@ -9,7 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.session2.R
 import com.example.session2.databinding.AddContactFragmentBinding
-import com.example.session2.model.Contact
+import com.example.session2.data.Contact
 import com.example.session2.viewmodel.ContactViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,31 +30,31 @@ class AddContactFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonSave.setOnClickListener {
-            val name = binding.nameContent.text.toString()
-            val phoneNumber = binding.phoneContent.text.toString()
-            val email = binding.emailContent.text.toString()
-            val note = binding.noteContent.text.toString()
-
-            if (name.isEmpty()) {
-                binding.newTextName.error = "Name cannot be empty"
-                return@setOnClickListener
-            }
-            if (phoneNumber.isEmpty()) {
-                binding.newTextPhone.error = "Phone number cannot be empty"
-                return@setOnClickListener
-            }
-            if (email.isEmpty()) {
-                binding.newTextEmail.error = "Email cannot be empty"
-                return@setOnClickListener
-            }
-
-            val contact = Contact(0,name, phoneNumber,R.drawable.avt2, email, note)
-            viewModel.addContact(contact)
-            val action = AddContactFragmentDirections.actionAddContactFragmentToContactFragment()
-            findNavController().navigate(action)
+            addContact()
         }
         binding.buttonDiscard.setOnClickListener {
-            requireActivity().onBackPressed()
+            findNavController().popBackStack()
+        }
+    }
+    fun addContact() {
+        val name = binding.nameContent.text.toString()
+        val phoneNumber = binding.phoneContent.text.toString()
+        val email = binding.emailContent.text.toString()
+        val note = binding.noteContent.text.toString()
+
+        if (name.isEmpty()) {
+            binding.newTextName.error = "Name cannot be empty"
+        }
+        if (phoneNumber.isEmpty()) {
+            binding.newTextPhone.error = "Phone number cannot be empty"
+        }
+        if (email.isEmpty()) {
+            binding.newTextEmail.error = "Email cannot be empty"
+        }
+        if (name.isNotEmpty() && phoneNumber.isNotEmpty() && email.isNotEmpty()) {
+            val contact = Contact(0,name, phoneNumber,R.drawable.avt2, email, note)
+            viewModel.createContact(contact)
+            findNavController().popBackStack()
         }
     }
 }

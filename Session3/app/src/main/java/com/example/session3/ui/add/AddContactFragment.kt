@@ -11,6 +11,7 @@ import com.example.session3.R
 
 import com.example.session3.databinding.AddContactFragmentBinding
 import com.example.session3.data.Contact
+import com.example.session3.sharedPreferences.UserPreferences
 import com.example.session3.viewmodel.ContactViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -55,7 +56,7 @@ class AddContactFragment : Fragment() {
             findNavController().navigate(action)
         }
         binding.buttonDiscard.setOnClickListener {
-            requireActivity().onBackPressed()
+            findNavController().navigate(R.id.action_global_toContactFragment)
         }
     }
 }

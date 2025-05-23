@@ -28,10 +28,18 @@ class DetailContactFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val contact = viewModel.getContactById(args.contactId)
-        binding.textNameDetail.text = contact?.name
-        binding.textPhoneDetail.text = contact?.phoneNumber
-        binding.textEmailDetail.text = contact?.email
-        binding.textNoteDetail.text = contact?.note
+        try {
+            if (contact != null) {
+                binding.textNameDetail.text = contact.name
+                binding.textPhoneDetail.text = contact.phoneNumber
+                binding.textEmailDetail.text=contact.email
+                binding.textNoteDetail.text=contact.note
+            } else {
+                binding.textNameDetail.text = "Contact not found"
+                binding.textPhoneDetail.text = ""
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
-
 }

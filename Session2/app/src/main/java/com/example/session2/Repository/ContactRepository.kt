@@ -1,31 +1,66 @@
 package com.example.session2.Repository
 
-import com.example.session2.model.Contact
+import android.util.Log
+import com.example.session2.data.Contact
+import com.example.session2.data.ContactDao
 import javax.inject.Inject
 import javax.inject.Singleton
-import com.example.session2.R
+import com.example.session2.network.ApiService
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+
 @Singleton
-class ContactRepository @Inject constructor(){
-    private val contacts = mutableListOf(
-        Contact(1,"John Doe", "123456789", R.drawable.avt2, "john.doe@example.com", "Friend"),
-        Contact(2,"Jane Smith", "987654321", R.drawable.avt2, "jane.smith@example.com", "Colleague"),
-        Contact(3,"Alice Brown", "555666777", R.drawable.avt2, "alice.brown@example.com", "Family"),
-        Contact(4,"Bob Johnson", "444333222", R.drawable.avt2, "bob.johnson@example.com", "Neighbor"),
-        Contact(5,"nvh", "12345", R.drawable.avt2, "@gmail.com", "note here"),
-    )
-    private var nextId: Int = contacts.maxOfOrNull { it.id }?.plus(1) ?: 1
-    fun addContact(contact: Contact) {
-        val newContact = contact.copy(id = nextId)
-        contacts.add(newContact)
-        nextId++
+class ContactRepository @Inject constructor(
+    private val apiService: ApiService,
+    private val contactDao: ContactDao
+){
+    suspend fun refreshContacts() : List<Contact> {
+        return withContext(Dispatchers.IO) {
+            try {
+                val cachedContact = contactDao.getAllContacts()
+                Log.d("ContactRepository", "Cached Contacts: ${cachedContact.size}")
+                try {
+                    val apiContact = apiService.getContacts()
+                    Log.d("ContactRepository", "API Contacts: ${apiContact.size}")
+                    contactDao.deleteAllContacts()
+                    contactDao.insertAll(apiContact)
+
+                    apiContact
+                }
+                catch (e: Exception) {
+                    Log.e("ContactRepository", "Error fetching contacts from API: ${e.message}")
+                    cachedContact
+                }
+            }catch (e: Exception) {
+                Log.e("ContactRepository", "Error fetching contacts from database: ${e.message}")
+                emptyList<Contact>()
+            }
+        }
     }
-    fun getContacts(): List<Contact> {
-        return contacts
+    suspend fun addContact(contact: Contact) {
+        withContext(Dispatchers.IO) {
+            try {
+                apiService.createContact(contact)
+                refreshContacts()
+            } catch (e: Exception) {
+                Log.e("ContactRepository", "Error adding contact: ${e.message}")
+            }
+        }
     }
-    fun getContactById(id: Int): Contact? {
-        return contacts.find { it.id == id }
+    suspend fun getContactById(id: Int): Contact? {
+        return withContext(Dispatchers.IO) {
+            contactDao.getContactById(id)
+        }
     }
-    fun deleteContact(contact: Contact) {
-        contacts.remove(contact)
+    suspend fun deleteContact(id: Int) {
+        withContext(Dispatchers.IO) {
+            try {
+                apiService.deleteContact(id)
+                refreshContacts()
+            } catch (e: Exception) {
+                Log.e("ContactRepository", "Error deleting contact: ${e.message}")
+            }
+        }
     }
+
 }

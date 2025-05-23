@@ -8,51 +8,20 @@
         android:id="@+id/addContactFragment"
         android:name="com.example.session2.ui.add.AddContactFragment"
         android:label="Add Contact" >
-        <action
-            android:id="@+id/action_addContactFragment_to_contactFragment"
-            app:destination="@id/contactFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
-            app:popEnterAnim="@android:anim/fade_in"
-            app:popExitAnim="@android:anim/fade_out" />
+
     </fragment>
     <fragment
         android:id="@+id/contactFragment"
         android:name="com.example.session2.ui.contact.ContactFragment"
         android:label="Contacts" >
         <action
-            android:id="@+id/action_contactFragment_to_addContactFragment"
-            app:destination="@id/addContactFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
-            app:popEnterAnim="@android:anim/fade_in"
-            app:popExitAnim="@android:anim/fade_out"/>
-        <action
-            android:id="@+id/action_contactFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
-            app:popEnterAnim="@android:anim/fade_in"
-            app:popExitAnim="@android:anim/fade_out"/>
-        <action
             android:id="@+id/action_contactFragment_to_detailContactFragment"
-            app:destination="@id/detailContactFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
-            app:popEnterAnim="@android:anim/fade_in"
-            app:popExitAnim="@android:anim/fade_out"/>
+            app:destination="@id/detailContactFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.session2.ui.settings.SettingsFragment"
         android:label="Settings" >
-        <action
-            android:id="@+id/action_settingsFragment_to_contactFragment"
-            app:destination="@id/contactFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
-            app:popEnterAnim="@android:anim/fade_in"
-            app:popExitAnim="@android:anim/fade_out"/>
     </fragment>
     <fragment
         android:id="@+id/detailContactFragment"

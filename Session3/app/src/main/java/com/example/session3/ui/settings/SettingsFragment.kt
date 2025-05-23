@@ -6,14 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.session3.R
 import dagger.hilt.android.AndroidEntryPoint
-import androidx.fragment.app.viewModels
 import com.example.session3.databinding.SettingsFragmentBinding
+import com.example.session3.sharedPreferences.UserPreferences
 
 @AndroidEntryPoint
 class SettingsFragment : Fragment() {
-    // Add settings-related UI and logic here
     private lateinit var binding: SettingsFragmentBinding
 
     override fun onCreateView(
@@ -25,20 +23,15 @@ class SettingsFragment : Fragment() {
         // Inflate the layout for this fragment
         return binding.root
     }
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val username = UserPreferences.getUsername()
-        binding.textUserName.setText("hello $username")
-        binding.btnSaveSettings.setOnClickListener{
-            val nameInput = binding.textInput.text.toString()
-            if (nameInput.isNotEmpty()) {
-                UserPreferences.setUsername(nameInput)
-                binding.textUserName.setText("hello $nameInput")
-                Log.d("SettingsFragment", "Username saved: $nameInput")
-            } else {
-                Log.d("SettingsFragment", "Username input is empty")
-            }
+    override fun onResume() {
+        super.onResume()
+        val savedname = UserPreferences.getUsername()
+        Log.d("TAG", "onResume: $savedname")
+        binding.textInput.setText(savedname)
+    }
 
-        }
-}
+    override fun onPause() {
+        super.onPause()
+        UserPreferences.setUsername(binding.textInput.text.toString())
+    }
 }

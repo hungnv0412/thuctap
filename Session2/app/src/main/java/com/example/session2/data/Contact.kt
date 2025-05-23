@@ -1,15 +1,16 @@
-package com.example.session3.data
+package com.example.session2.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "contacts")
 data class Contact (
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+
+    @PrimaryKey(autoGenerate = true) val id: Int,
     val name: String,
     val phoneNumber: String,
     val avatar:Int,
-    val email: String,
-    val note: String,
+    val email: String = "nvh@gmail.com",
+    val note: String = "note here",
 )
 
