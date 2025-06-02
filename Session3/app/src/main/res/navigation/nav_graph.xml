@@ -70,6 +70,36 @@
     <fragment
         android:id="@+id/groupFragment"
         android:name="com.example.session3.ui.group.GroupFragment"
-        android:label="GroupFragment" />
+        android:label="GroupFragment" >
+        <action
+            android:id="@+id/action_groupFragment_to_addGroupFragment"
+            app:destination="@id/addGroupFragment" />
+        <action
+            android:id="@+id/action_groupFragment_to_contactGroupFragment"
+            app:destination="@id/contactGroupFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addGroupFragment"
+        android:name="com.example.session3.ui.add.AddGroupFragment"
+        android:label="AddGroupFragment" >
+        <action
+            android:id="@+id/action_addGroupFragment_to_groupFragment"
+            app:destination="@id/groupFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/contactGroupFragment"
+        android:name="com.example.session3.ui.contact.ContactGroupFragment"
+        android:label="ContactGroupFragment" >
+        <argument android:name="groupId" app:argType="integer" />
+        <action
+            android:id="@+id/action_contactGroupFragment_to_addContactToGroupFragment"
+            app:destination="@id/addContactToGroupFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addContactToGroupFragment"
+        android:name="com.example.session3.ui.contact.AddContactToGroupFragment"
+        android:label="AddContactToGroupFragment" >
+        <argument android:name="groupId" app:argType="integer" />
+    </fragment>
 
 </navigation>

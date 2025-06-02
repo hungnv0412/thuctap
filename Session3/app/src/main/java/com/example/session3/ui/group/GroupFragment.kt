@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.session3.adapter.GroupAdapter
@@ -32,10 +33,17 @@ class GroupFragment : androidx.fragment.app.Fragment() {
         recyclerView=view.findViewById(R.id.recyclerViewGroups)
         recyclerView.layoutManager= LinearLayoutManager(requireContext())
 
-        adapter= GroupAdapter(mutableListOf(), onItemClick = {}, onItemLongClick = {})
+        adapter= GroupAdapter(mutableListOf(), onItemClick = {
+            val action = GroupFragmentDirections.actionGroupFragmentToContactGroupFragment(it.id)
+            findNavController().navigate(action)
+        }, onItemLongClick = {})
 
         recyclerView.adapter = adapter
-
+        val addButton = view.findViewById<com.google.android.material.floatingactionbutton.FloatingActionButton>(R.id.buttonAddGroup)
+        addButton.setOnClickListener {
+            val action = GroupFragmentDirections.actionGroupFragmentToAddGroupFragment()
+            findNavController().navigate(action)
+        }
         viewModel.groups.observe (viewLifecycleOwner){groups ->
             adapter.updateGroup(groups)
         }

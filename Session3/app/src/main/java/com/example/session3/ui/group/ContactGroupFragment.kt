@@ -8,6 +8,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.session3.adapter.ContactAdapter
@@ -18,10 +19,11 @@ import com.example.session3.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 @AndroidEntryPoint
-class ContactFragment : Fragment() {
+class ContactGroupFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var contactAdapter: ContactAdapter
+    private val args: ContactGroupFragmentArgs by navArgs()
     private val viewModel: ContactViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -34,16 +36,17 @@ class ContactFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.loadContacts() // Ensure data is loaded when the fragment is created
+
+        viewModel.getContactsByGroupId(args.groupId) // Ensure data is loaded when the fragment is created
 
         recyclerView = view.findViewById(R.id.recyclerViewContacts)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         contactAdapter = ContactAdapter(
             mutableListOf(), // Start with an empty list
-            onItemClick = { contact ->
-                val action = ContactFragmentDirections
-                    .actionContactFragmentToDetailContactFragment(contact.id)
+            onItemClick = { group ->
+                val action = ContactGroupFragmentDirections
+                    .actionContactGroupFragmentToAddContactToGroupFragment(args.groupId)
                 findNavController().navigate(action)
             },
             onItemLongClick = { contact ->
@@ -57,7 +60,9 @@ class ContactFragment : Fragment() {
         }
         val addButton = view.findViewById<FloatingActionButton>(R.id.buttonAddContact)
         addButton.setOnClickListener {
-            findNavController().navigate(R.id.action_contactFragment_to_addContactFragment)
+            val action = ContactGroupFragmentDirections
+                .actionContactGroupFragmentToAddContactToGroupFragment(args.groupId)
+            findNavController().navigate(action)
         }
 
     }

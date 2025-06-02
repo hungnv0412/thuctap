@@ -4,7 +4,7 @@ import com.example.session3.data.Entity.Contact
 import com.example.session3.data.DAO.ContactDao
 import com.example.session3.data.DAO.ContactGroupDao
 import com.example.session3.data.Entity.ContactGroupCrossRef
-import com.example.session3.data.Entity.Group
+import com.example.session3.data.Entity.ContactWithGroups
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -41,6 +41,11 @@ class ContactRepository @Inject constructor(
     suspend fun addContactToGroup(contactGroup: ContactGroupCrossRef){
         withContext(Dispatchers.IO){
             contactGroupDao.addContactToGroup(contactGroup)
+        }
+    }
+    suspend fun getContactWithGroup(contactId: Int): List<Contact> {
+        return withContext(Dispatchers.IO) {
+            contactDao.getContactsByGroupId(contactId)
         }
     }
 }

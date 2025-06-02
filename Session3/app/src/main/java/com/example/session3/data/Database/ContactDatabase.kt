@@ -9,7 +9,6 @@ import com.example.session3.data.DAO.ContactGroupDao
 import com.example.session3.data.DAO.GroupDao
 import com.example.session3.data.Entity.Contact
 import com.example.session3.data.Entity.ContactGroupCrossRef
-import com.example.session3.data.Entity.ContactWithGroups
 import com.example.session3.data.Entity.Group
 
 @Database(entities = [Contact::class,Group::class,ContactGroupCrossRef::class], version = 2, exportSchema = true)
