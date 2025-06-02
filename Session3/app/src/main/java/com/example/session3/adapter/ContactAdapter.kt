@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.session3.R
-import com.example.session3.data.Contact
+import com.example.session3.data.Entity.Contact
 import com.example.session3.ui.contact.ContactFragment
 
 class ContactAdapter(

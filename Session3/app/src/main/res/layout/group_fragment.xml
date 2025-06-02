@@ -6,18 +6,17 @@
     android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewContacts"
+        android:id="@+id/recyclerViewGroups"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="4dp"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="0dp"
-        tools:listitem="@layout/item_contact"
+        tools:listitem="@layout/item_group"
         />
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/buttonAddContact"
+        android:id="@+id/buttonAddGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -25,7 +24,6 @@
         android:layout_marginBottom="12dp"
         android:contentDescription="Add Contact"
         android:src="@drawable/icon_add"
-        app:layout_constraintBottom_toBottomOf="@id/recyclerViewContacts"
+        app:layout_constraintBottom_toBottomOf="@id/recyclerViewGroups"
         app:layout_constraintEnd_toEndOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

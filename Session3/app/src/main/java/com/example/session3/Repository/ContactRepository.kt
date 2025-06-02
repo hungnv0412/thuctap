@@ -1,7 +1,10 @@
 package com.example.session3.Repository
 
-import com.example.session3.data.Contact
-import com.example.session3.data.ContactDao
+import com.example.session3.data.Entity.Contact
+import com.example.session3.data.DAO.ContactDao
+import com.example.session3.data.DAO.ContactGroupDao
+import com.example.session3.data.Entity.ContactGroupCrossRef
+import com.example.session3.data.Entity.Group
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -9,7 +12,8 @@ import javax.inject.Singleton
 
 @Singleton
 class ContactRepository @Inject constructor(
-    private val contactDao: ContactDao
+    private val contactDao: ContactDao,
+    private val contactGroupDao: ContactGroupDao
 ) {
     suspend fun addContact(contact: Contact) {
         withContext(Dispatchers.IO) {
@@ -32,6 +36,11 @@ class ContactRepository @Inject constructor(
     suspend fun deleteContact(contact: Contact) {
         withContext(Dispatchers.IO) {
             contactDao.deleteContact(contact)
+        }
+    }
+    suspend fun addContactToGroup(contactGroup: ContactGroupCrossRef){
+        withContext(Dispatchers.IO){
+            contactGroupDao.addContactToGroup(contactGroup)
         }
     }
 }

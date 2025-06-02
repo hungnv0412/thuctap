@@ -3,18 +3,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.compose.material3.FloatingActionButtonDefaults
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.session3.adapter.ContactAdapter
-import com.example.session3.data.Contact
+import com.example.session3.data.Entity.Contact
 import com.example.session3.viewmodel.ContactViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import com.example.session3.R
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 @AndroidEntryPoint
 class ContactFragment : Fragment() {
@@ -55,6 +58,11 @@ class ContactFragment : Fragment() {
         viewModel.contacts.observe(viewLifecycleOwner) { contacts ->
             contactAdapter.updateContact(contacts) // Update adapter when data changes
         }
+        val addButton = view.findViewById<FloatingActionButton>(R.id.buttonAddContact)
+        addButton.setOnClickListener {
+            findNavController().navigate(R.id.action_contactFragment_to_addContactFragment)
+        }
+
     }
 
     private fun showDiaglogDelete(contact: Contact) {

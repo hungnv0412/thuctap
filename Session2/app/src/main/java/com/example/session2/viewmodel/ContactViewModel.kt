@@ -32,24 +32,6 @@ class ContactViewModel @Inject constructor(
             }
         }
     }
-//    fun loadContacts(){
-//        viewModelScope.launch{
-//            try {
-//                _isloading.postValue(true)
-//                val contacts = contactRepository.getContact()
-//                if (contacts.isNotEmpty()) {
-//                    _contacts.postValue(contacts)
-//                } else {
-//                    Log.d("ContactViewModel", "No contacts found")
-//                }
-//            } catch (e: Exception) {
-//                e.printStackTrace()
-//            }
-//            finally {
-//                _isloading.postValue(false)
-//            }
-//        }
-//    }
     fun createContact(contact: Contact) {
         viewModelScope.launch {
             try {

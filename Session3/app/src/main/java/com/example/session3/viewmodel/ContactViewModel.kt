@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.session3.Repository.ContactRepository
-import com.example.session3.data.Contact
+import com.example.session3.data.Entity.Contact
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -39,10 +39,9 @@ class ContactViewModel @Inject constructor(
         }
     }
 
-    fun getContactById(id: Int) : Contact? {
+    fun getContactById(id: Int)  {
         viewModelScope.launch {
             _contact.value = contactRepository.getContactById(id)
         }
-        return _contact.value
     }
 }
