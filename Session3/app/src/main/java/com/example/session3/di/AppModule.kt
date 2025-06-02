@@ -2,8 +2,10 @@ package com.example.session3.di
 
 import android.content.Context
 import com.example.session3.Repository.ContactRepository
-import com.example.session3.data.ContactDao
-import com.example.session3.data.ContactDatabase
+import com.example.session3.data.DAO.ContactDao
+import com.example.session3.data.DAO.ContactGroupDao
+import com.example.session3.data.DAO.GroupDao
+import com.example.session3.data.Database.ContactDatabase
 import com.example.session3.sharedPreferences.UserPreferences
 import dagger.Module
 import dagger.Provides
@@ -26,5 +28,14 @@ class AppModule {
     fun provideContactDao(database: ContactDatabase): ContactDao {
         return database.contactDao()
     }
-
+    @Provides
+    @Singleton
+    fun provideGroupDao(database: ContactDatabase): GroupDao{
+        return database.groupDao()
+    }
+    @Provides
+    @Singleton
+    fun provideContactGroupDao(database: ContactDatabase): ContactGroupDao{
+        return database.contactGroupDao()
+    }
 }

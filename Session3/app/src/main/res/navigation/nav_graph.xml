@@ -67,4 +67,9 @@
         <deepLink
             app:uri="https://www.facebook.com/{contactId}"/>
     </fragment>
+    <fragment
+        android:id="@+id/groupFragment"
+        android:name="com.example.session3.ui.group.GroupFragment"
+        android:label="GroupFragment" />
+
 </navigation>

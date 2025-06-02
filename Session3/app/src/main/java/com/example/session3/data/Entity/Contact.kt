@@ -1,4 +1,4 @@
-package com.example.session3.data
+package com.example.session3.data.Entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -12,4 +12,3 @@ data class Contact (
     val email: String,
     val note: String,
 )
-
