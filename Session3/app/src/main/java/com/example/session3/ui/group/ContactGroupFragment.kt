@@ -44,10 +44,7 @@ class ContactGroupFragment : Fragment() {
 
         contactAdapter = ContactAdapter(
             mutableListOf(), // Start with an empty list
-            onItemClick = { group ->
-                val action = ContactGroupFragmentDirections
-                    .actionContactGroupFragmentToAddContactToGroupFragment(args.groupId)
-                findNavController().navigate(action)
+            onItemClick = {
             },
             onItemLongClick = { contact ->
                 showDiaglogDelete(contact)
