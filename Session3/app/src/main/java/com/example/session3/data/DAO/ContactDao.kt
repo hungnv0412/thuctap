@@ -25,6 +25,6 @@ interface ContactDao {
     @Insert(onConflict = OnConflictStrategy.Companion.REPLACE)
     suspend fun insertAll(contacts: List<Contact>)
     @Transaction
-    @Query("SELECT * FROM contacts WHERE id= :contactId")
-    suspend fun getContactWithGroup(contactId: Int): ContactWithGroups
+    @Query("SELECT * FROM contacts INNER JOIN contacts_groups_cross_ref ON contacts.id = contacts_groups_cross_ref.contactId WHERE contacts_groups_cross_ref.groupId = :groupId")
+    suspend fun getContactsByGroupId(groupId: Int): List<Contact>
 }

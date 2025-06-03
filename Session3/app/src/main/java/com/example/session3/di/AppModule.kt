@@ -1,12 +1,10 @@
 package com.example.session3.di
 
 import android.content.Context
-import com.example.session3.Repository.ContactRepository
 import com.example.session3.data.DAO.ContactDao
 import com.example.session3.data.DAO.ContactGroupDao
 import com.example.session3.data.DAO.GroupDao
 import com.example.session3.data.Database.ContactDatabase
-import com.example.session3.sharedPreferences.UserPreferences
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

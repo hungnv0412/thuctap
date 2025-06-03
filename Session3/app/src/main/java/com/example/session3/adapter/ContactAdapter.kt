@@ -8,10 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.session3.R
 import com.example.session3.data.Entity.Contact
-import com.example.session3.ui.contact.ContactFragment
+import com.example.session3.ui.contact.ContactGroupFragment
 
 class ContactAdapter(
-    private val context: ContactFragment,
     private val contactList: MutableList<Contact>,
     private val onItemClick: (Contact) -> Unit,
     private val onItemLongClick: (Contact) -> Unit,
