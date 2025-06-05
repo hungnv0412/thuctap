@@ -18,7 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class AddContactFragment : Fragment() {
     private lateinit var binding: AddContactFragmentBinding
     private val viewModel: ContactViewModel by activityViewModels()
-
+    private var saveDraft : Boolean = true
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -52,10 +52,36 @@ class AddContactFragment : Fragment() {
             val contact = Contact(0,name, phoneNumber,R.drawable.avt2, email, note)
             viewModel.addContact(contact)
             val action = AddContactFragmentDirections.actionAddContactFragmentToContactFragment()
+            saveDraft = false
+            viewModel.clearDraft()
             findNavController().navigate(action)
         }
         binding.buttonDiscard.setOnClickListener {
+            saveDraft= false
+            viewModel.clearDraft()
             findNavController().navigate(R.id.action_global_toContactFragment)
         }
     }
+
+    override fun onPause() {
+        super.onPause()
+        if (saveDraft){
+            viewModel.saveDraft(
+                binding.nameContent.text.toString(),
+                binding.phoneContent.text.toString(),
+                binding.emailContent.text.toString(),
+                binding.noteContent.text.toString()
+            )
+        } else {
+            viewModel.clearDraft()
+        }
+    }
+    override fun onResume() {
+        super.onResume()
+        binding.nameContent.setText(viewModel.getDraftName() ?: "")
+        binding.phoneContent.setText(viewModel.getDraftPhoneNumber() ?: "")
+        binding.emailContent.setText(viewModel.getDraftEmail() ?: "")
+        binding.noteContent.setText(viewModel.getDraftNote() ?: "")
+    }
+
 }

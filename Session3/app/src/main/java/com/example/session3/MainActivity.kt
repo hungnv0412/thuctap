@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.contactFragment, R.id.addContactFragment, R.id.settingsFragment),
+            setOf(R.id.contactFragment, R.id.groupFragment, R.id.settingsFragment),
             drawerLayout
         )
         toolbar.setupWithNavController(navController, appBarConfiguration)

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import com.example.session3.databinding.SettingsFragmentBinding
 import com.example.session3.sharedPreferences.UserPreferences
@@ -22,6 +23,14 @@ class SettingsFragment : Fragment() {
         binding = SettingsFragmentBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
         return binding.root
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.buttonLogout.setOnClickListener {
+            val action = SettingsFragmentDirections.actionGlobalToLoginFragment()
+            findNavController().navigate(action)
+        }
     }
     override fun onResume() {
         super.onResume()
