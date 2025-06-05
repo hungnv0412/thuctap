@@ -46,7 +46,7 @@ class AddGroupFragment : Fragment() {
             findNavController().navigate(action)
         }
         binding.buttonDiscard.setOnClickListener {
-            findNavController().navigate(R.id.action_addGroupFragment_to_groupFragment)
+            findNavController().popBackStack()
         }
     }
 }

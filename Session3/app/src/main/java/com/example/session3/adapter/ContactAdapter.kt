@@ -18,7 +18,6 @@ class ContactAdapter(
     class ContactViewHolder(
         private val view: View,
     ): RecyclerView.ViewHolder(view){
-        val idTextView: TextView = view.findViewById(R.id.textID)
         val nameTextView : TextView = view.findViewById(R.id.textName)
         val phoneTextView : TextView = view.findViewById(R.id.textPhone)
         val avtImageView : ImageView = view.findViewById(R.id.imageAvatar)
@@ -32,7 +31,6 @@ class ContactAdapter(
 
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
         val item = contactList[position]
-        holder.idTextView.text = item.id.toString()
         holder.nameTextView.text = item.name
         holder.phoneTextView.text = item.phoneNumber
         holder.avtImageView.setImageResource(item.avatar)

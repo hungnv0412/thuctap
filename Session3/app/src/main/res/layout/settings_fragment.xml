@@ -37,10 +37,10 @@
 
     <!-- Button: Reset Settings -->
     <Button
-        android:id="@+id/btnSaveSettings"
+        android:id="@+id/buttonLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save Settings"
+        android:text="Logout"
         app:layout_constraintTop_toBottomOf="@id/textInputLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

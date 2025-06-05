@@ -47,14 +47,6 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="@+id/textName"
                 app:layout_constraintTop_toBottomOf="@+id/textName"/>
-            <TextView
-                android:id="@+id/textID"
-                android:text="id"
-                android:textSize="14sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="@+id/textName"
-                app:layout_constraintTop_toBottomOf="@+id/textPhone"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -48,4 +48,9 @@ class ContactRepository @Inject constructor(
             contactDao.getContactsByGroupId(contactId)
         }
     }
+    suspend fun removeContactFromGroup(contactId: Int, groupId: Int) {
+        withContext(Dispatchers.IO) {
+            contactGroupDao.deleteContactFromGroup(contactId, groupId)
+        }
+    }
 }

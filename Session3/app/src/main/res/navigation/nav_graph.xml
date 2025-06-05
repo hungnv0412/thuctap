@@ -6,6 +6,11 @@
     <action
         android:id="@+id/action_global_toContactFragment"
         app:destination="@+id/contactFragment"/>
+    <action
+        android:id="@+id/action_global_toLoginFragment"
+        app:destination="@+id/loginFragment"
+        app:popUpTo="@id/loginFragment"
+        app:popUpToInclusive="true"/>
 
     <fragment
         android:id="@+id/addContactFragment"
@@ -14,10 +19,7 @@
         <action
             android:id="@+id/action_addContactFragment_to_contactFragment"
             app:destination="@id/contactFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
-            app:popEnterAnim="@android:anim/fade_in"
-            app:popExitAnim="@android:anim/fade_out" />
+             />
     </fragment>
     <fragment
         android:id="@+id/contactFragment"
@@ -26,24 +28,15 @@
         <action
             android:id="@+id/action_contactFragment_to_addContactFragment"
             app:destination="@id/addContactFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
-            app:popEnterAnim="@android:anim/fade_in"
-            app:popExitAnim="@android:anim/fade_out"/>
+            />
         <action
             android:id="@+id/action_contactFragment_to_settingsFragment"
             app:destination="@id/settingsFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
-            app:popEnterAnim="@android:anim/fade_in"
-            app:popExitAnim="@android:anim/fade_out"/>
+            />
         <action
             android:id="@+id/action_contactFragment_to_detailContactFragment"
             app:destination="@id/detailContactFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
-            app:popEnterAnim="@android:anim/fade_in"
-            app:popExitAnim="@android:anim/fade_out"/>
+            />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -52,10 +45,8 @@
         <action
             android:id="@+id/action_settingsFragment_to_contactFragment"
             app:destination="@id/contactFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
-            app:popEnterAnim="@android:anim/fade_in"
-            app:popExitAnim="@android:anim/fade_out"/>
+            app:popUpTo="@id/settingsFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/detailContactFragment"
@@ -70,7 +61,7 @@
     <fragment
         android:id="@+id/groupFragment"
         android:name="com.example.session3.ui.group.GroupFragment"
-        android:label="GroupFragment" >
+        android:label="Groups" >
         <action
             android:id="@+id/action_groupFragment_to_addGroupFragment"
             app:destination="@id/addGroupFragment" />
@@ -81,7 +72,7 @@
     <fragment
         android:id="@+id/addGroupFragment"
         android:name="com.example.session3.ui.add.AddGroupFragment"
-        android:label="AddGroupFragment" >
+        android:label="Add Group" >
         <action
             android:id="@+id/action_addGroupFragment_to_groupFragment"
             app:destination="@id/groupFragment" />
@@ -89,7 +80,7 @@
     <fragment
         android:id="@+id/contactGroupFragment"
         android:name="com.example.session3.ui.contact.ContactGroupFragment"
-        android:label="ContactGroupFragment" >
+        android:label="Contacts" >
         <argument android:name="groupId" app:argType="integer" />
         <action
             android:id="@+id/action_contactGroupFragment_to_addContactToGroupFragment"
@@ -98,8 +89,12 @@
     <fragment
         android:id="@+id/addContactToGroupFragment"
         android:name="com.example.session3.ui.contact.AddContactToGroupFragment"
-        android:label="AddContactToGroupFragment" >
+        android:label="Add Contact to Group" >
         <argument android:name="groupId" app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.session3.ui.login.LoginFragment"
+        android:label="LoginFragment" />
 
 </navigation>

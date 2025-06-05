@@ -69,7 +69,7 @@ class ContactGroupFragment : Fragment() {
             .setTitle("Xoá liên hệ")
             .setMessage("Bạn có chắc chắn muốn xoá ${contact.name} không?")
             .setPositiveButton("Có") { _, _ ->
-                viewModel.deleteContact(contact)
+                viewModel.deleteContactFromGroup(contact.id, args.groupId)
                 Toast.makeText(requireContext(), "Đã xoá ${contact.name}", Toast.LENGTH_SHORT).show()
             }
             .setNegativeButton("Không", null)
