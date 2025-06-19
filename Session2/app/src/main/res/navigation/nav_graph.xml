@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_contactFragment_to_detailContactFragment"
             app:destination="@id/detailContactFragment" />
+        <action
+            android:id="@+id/action_contactFragment_to_addContactFragment"
+            app:destination="@id/addContactFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -35,4 +38,34 @@
         android:id="@+id/mainActivity"
         android:name="com.example.session2.MainActivity"
         android:label="MainActivity" />
+    <fragment
+        android:id="@+id/groupFragment"
+        android:name="com.example.session2.ui.Group.GroupFragment"
+        android:label="Groups" >
+        <action
+            android:id="@+id/action_groupFragment_to_contactGroupFragment"
+            app:destination="@id/contactGroupFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/contactGroupFragment"
+        android:name="com.example.session2.ui.group.ContactGroupFragment"
+        android:label="ContactGroupFragment" >
+        <argument
+            android:name="groupId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_contactGroupFragment_to_addContactToGroupFragment"
+            app:destination="@id/addContactToGroupFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addContactToGroupFragment"
+        android:name="com.example.session2.ui.contact.AddContactToGroupFragment"
+        android:label="AddContactToGroupFragment">
+        <argument
+            android:name="groupId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_addContactToGroupFragment_to_contactGroupFragment"
+            app:destination="@id/contactGroupFragment" />
+    </fragment>
 </navigation>

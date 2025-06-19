@@ -13,7 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class DetailContactFragment : Fragment() {
-    val viewModel: ContactViewModel by activityViewModels()
+    private val viewModel: ContactViewModel by activityViewModels()
     private val args: DetailContactFragmentArgs by navArgs()
     private lateinit var binding: DetailContactFragmentBinding
     override fun onCreateView(
@@ -30,10 +30,10 @@ class DetailContactFragment : Fragment() {
         val contact = viewModel.getContactById(args.contactId)
         try {
             if (contact != null) {
-                binding.textNameDetail.text = contact.name
-                binding.textPhoneDetail.text = contact.phoneNumber
-                binding.textEmailDetail.text=contact.email
-                binding.textNoteDetail.text=contact.note
+                binding.textNameDetail.text = "Tên liên hệ: ${contact.name}"
+                binding.textPhoneDetail.text = "Số điện thoại: ${contact.phoneNumber}"
+                binding.textEmailDetail.text="Email liên hệ: ${contact.email}"
+                binding.textNoteDetail.text="Ghi chú: ${contact.note}"
             } else {
                 binding.textNameDetail.text = "Contact not found"
                 binding.textPhoneDetail.text = ""

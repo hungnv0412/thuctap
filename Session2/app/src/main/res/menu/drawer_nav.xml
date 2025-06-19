@@ -6,9 +6,9 @@
             android:title="Home"
             android:icon="@drawable/icon_home" />
         <item
-            android:id="@+id/addContactFragment"
-            android:title="Add Contact"
-            android:icon="@drawable/icon_add_contact" />
+            android:id="@+id/groupFragment"
+            android:title="Groups"
+            android:icon="@drawable/icon_group" />
         <item
             android:id="@+id/settingsFragment"
             android:title="Settings"

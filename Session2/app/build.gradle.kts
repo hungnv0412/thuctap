@@ -58,6 +58,8 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.navigation.fragment.ktx)
+    implementation(libs.navigation.ui.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -67,13 +69,13 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
-    implementation ("androidx.appcompat:appcompat:1.7.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.2.1")
+    implementation (libs.androidx.appcompat)
+    implementation(libs.androidx.constraintlayout)
     // To use constraintlayout in compose
-    implementation("androidx.constraintlayout:constraintlayout-compose:1.1.1")
-    implementation("androidx.recyclerview:recyclerview:1.4.0")
-    implementation("com.google.android.material:material:1.12.0")
-    implementation ("androidx.compose.material3:material3:1.3.2")
+    implementation(libs.androidx.constraintlayout.compose)
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.material)
+    implementation (libs.material3)
 
     // Jetpack Compose integration
     implementation(libs.androidx.navigation.compose)
@@ -93,9 +95,11 @@ dependencies {
     // Room
     implementation ("androidx.room:room-runtime:2.7.1")
     kapt ("androidx.room:room-compiler:2.7.1")
+    implementation (libs.adapter.rxjava2)
 
 // Optional - Room with Kotlin Coroutines support
     implementation ("androidx.room:room-ktx:2.7.1")
+    implementation (libs.logging.interceptor)
 
     implementation (libs.retrofit)
     implementation (libs.converter.gson)
