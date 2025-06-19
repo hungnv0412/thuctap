@@ -1,4 +1,4 @@
-package com.example.session3.data.Entity
+package com.example.session3.data.entity
 
 import androidx.room.Entity
 

@@ -1,4 +1,4 @@
-package com.example.session3.data.Database
+package com.example.session3.data.database
 
 import android.content.Context
 import androidx.room.Database
@@ -7,11 +7,12 @@ import androidx.room.RoomDatabase
 import com.example.session3.data.DAO.ContactDao
 import com.example.session3.data.DAO.ContactGroupDao
 import com.example.session3.data.DAO.GroupDao
-import com.example.session3.data.Entity.Contact
-import com.example.session3.data.Entity.ContactGroupCrossRef
-import com.example.session3.data.Entity.Group
+import com.example.session3.data.database.migrations.MIGRATION_2_3
+import com.example.session3.data.entity.Contact
+import com.example.session3.data.entity.ContactGroupCrossRef
+import com.example.session3.data.entity.Group
 
-@Database(entities = [Contact::class,Group::class,ContactGroupCrossRef::class], version = 2, exportSchema = true)
+@Database(entities = [Contact::class,Group::class,ContactGroupCrossRef::class], version = 3, exportSchema = true)
 abstract class ContactDatabase: RoomDatabase() {
     abstract fun contactDao(): ContactDao
     abstract fun groupDao(): GroupDao
@@ -25,7 +26,7 @@ abstract class ContactDatabase: RoomDatabase() {
                         context.applicationContext,
                         ContactDatabase::class.java,
                         "contact_database"
-                    ).fallbackToDestructiveMigration().build()
+                    ).addMigrations(MIGRATION_2_3).build()
                 }
             }
             return INSTANCE!!

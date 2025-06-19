@@ -7,9 +7,9 @@
 />
 
     <item
-        android:id="@+id/addContactFragment"
-        android:title="Add Contacts"
-        android:icon="@drawable/icon_add_contact"
+        android:id="@+id/groupFragment"
+        android:title="Groups"
+        android:icon="@drawable/icon_group"
         />
 
     <item

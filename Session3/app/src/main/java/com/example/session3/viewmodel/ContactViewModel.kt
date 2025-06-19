@@ -7,9 +7,12 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.session3.Repository.ContactRepository
-import com.example.session3.data.Entity.Contact
-import com.example.session3.data.Entity.ContactGroupCrossRef
+import com.example.session3.data.entity.Contact
+import com.example.session3.data.entity.ContactGroupCrossRef
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -23,43 +26,49 @@ class ContactViewModel @Inject constructor(
     private val _contact = MutableLiveData<Contact?>()
     val contact : LiveData<Contact?> = _contact
 
+    private val ioScope : CoroutineScope = CoroutineScope(Job() + viewModelScope.coroutineContext)
+
     fun loadContacts() {
-        viewModelScope.launch {
-            _contacts.value = contactRepository.getContacts()
+        ioScope.launch {
+            _contacts.value=contactRepository.getContacts()
         }
     }
 
     fun addContact(contact: Contact) {
-        viewModelScope.launch {
+        ioScope.launch {
             contactRepository.addContact(contact)
             loadContacts()
         }
     }
 
     fun deleteContact(contact: Contact) {
-        viewModelScope.launch {
+        ioScope.launch {
             contactRepository.deleteContact(contact)
             loadContacts()
         }
     }
-
+    fun searchContacts(name: String) {
+        ioScope.launch {
+            _contacts.value = contactRepository.searchContacts(name)
+        }
+    }
     fun getContactById(id: Int)  {
-        viewModelScope.launch {
+        ioScope.launch {
             _contact.value = contactRepository.getContactById(id)
         }
     }
     fun addContactToGroup(contactId: Int, groupId: Int) {
-        viewModelScope.launch {
+        ioScope.launch {
             contactRepository.addContactToGroup(ContactGroupCrossRef(contactId, groupId))
         }
     }
     fun getContactsByGroupId(groupId: Int) {
-        viewModelScope.launch {
+        ioScope.launch {
             _contacts.value = contactRepository.getContactWithGroup(groupId)
         }
     }
     fun deleteContactFromGroup(contactId : Int,groupId: Int){
-        viewModelScope.launch{
+        ioScope.launch{
             contactRepository.removeContactFromGroup(contactId,groupId)
             getContactsByGroupId(groupId)
         }
@@ -85,5 +94,10 @@ class ContactViewModel @Inject constructor(
         savedStateHandle.remove<String>("email")
         savedStateHandle.remove<String>("note")
         Log.d("ContactViewModel", "Draft cleared")
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        ioScope.cancel()
     }
 }

@@ -1,4 +1,4 @@
-package com.example.session3.ui.contact
+package com.example.session2.ui.group
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,11 +11,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.session3.adapter.ContactAdapter
-import com.example.session3.data.entity.Contact
-import com.example.session3.viewmodel.ContactViewModel
+import com.example.session2.viewmodel.ContactViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import com.example.session3.R
+import com.example.session2.R
+import com.example.session2.adapter.ContactAdapter
+import com.example.session2.data.contact.Contact
+import com.example.session2.databinding.ContactFragmentBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 @AndroidEntryPoint
@@ -25,13 +26,14 @@ class ContactGroupFragment : Fragment() {
     private lateinit var contactAdapter: ContactAdapter
     private val args: ContactGroupFragmentArgs by navArgs()
     private val viewModel: ContactViewModel by activityViewModels()
-
+    private lateinit var binding : ContactFragmentBinding
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.contact_fragment, container, false)
+        binding = ContactFragmentBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -46,34 +48,30 @@ class ContactGroupFragment : Fragment() {
             mutableListOf(), // Start with an empty list
             onItemClick = {
             },
-            onItemLongClick = { contact ->
-                showDiaglogDelete(contact)
+            onItemLongClick = {
             }
         )
         recyclerView.adapter = contactAdapter
-
-        viewModel.contacts.observe(viewLifecycleOwner) { contacts ->
-            contactAdapter.updateContact(contacts) // Update adapter when data changes
+        viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            if (isLoading) {
+                // Hiển thị ProgressBar
+                binding.progressBar.visibility = View.VISIBLE
+                binding.recyclerViewContacts.visibility = View.GONE
+            } else {
+                // Ẩn ProgressBar
+                binding.progressBar.visibility = View.GONE
+                binding.recyclerViewContacts.visibility = View.VISIBLE
+            }
         }
-        val addButton = view.findViewById<FloatingActionButton>(R.id.buttonAddContact)
+        viewModel.contacts.observe(viewLifecycleOwner) { contacts ->
+            contactAdapter.updateContacts(contacts)
+        }
+        val addButton = view.findViewById<FloatingActionButton>(R.id.buttonAddGroup)
         addButton.setOnClickListener {
             val action = ContactGroupFragmentDirections
                 .actionContactGroupFragmentToAddContactToGroupFragment(args.groupId)
             findNavController().navigate(action)
         }
 
-    }
-
-    private fun showDiaglogDelete(contact: Contact) {
-        val dialog = AlertDialog.Builder(requireContext())
-            .setTitle("Xoá liên hệ")
-            .setMessage("Bạn có chắc chắn muốn xoá ${contact.name} không?")
-            .setPositiveButton("Có") { _, _ ->
-                viewModel.deleteContactFromGroup(contact.id, args.groupId)
-                Toast.makeText(requireContext(), "Đã xoá ${contact.name}", Toast.LENGTH_SHORT).show()
-            }
-            .setNegativeButton("Không", null)
-            .create()
-        dialog.show()
     }
 }

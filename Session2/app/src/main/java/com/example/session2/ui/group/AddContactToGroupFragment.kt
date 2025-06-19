@@ -12,20 +12,24 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.session2.R
 import com.example.session2.databinding.ContactFragmentBinding
 import com.example.session2.data.contact.Contact
+import com.example.session2.ui.group.ContactGroupFragmentArgs
 import com.example.session2.viewmodel.ContactViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.getValue
 
 @AndroidEntryPoint
-class ContactFragment : Fragment() {
+class AddContactToGroupFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var contactAdapter: ContactAdapter
     private lateinit var binding: ContactFragmentBinding
+    private val args: ContactGroupFragmentArgs by navArgs()
     private val viewModel: ContactViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -48,9 +52,8 @@ class ContactFragment : Fragment() {
         contactAdapter = ContactAdapter(
             emptyList(),
             onItemClick = {
-                contact ->
-                val action = ContactFragmentDirections
-                    .actionContactFragmentToDetailContactFragment(contact.id)
+                viewModel.addContactToGroup(it.id, args.groupId)
+                val action = AddContactToGroupFragmentDirections.actionAddContactToGroupFragmentToContactGroupFragment(args.groupId)
                 findNavController().navigate(action)
             },
             onItemLongClick = { contact ->

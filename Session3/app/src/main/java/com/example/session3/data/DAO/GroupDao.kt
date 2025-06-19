@@ -5,7 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.session3.data.Entity.Group
+import com.example.session3.data.entity.Group
 
 @Dao
 interface GroupDao{

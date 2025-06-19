@@ -1,7 +1,7 @@
 package com.example.session3.Repository
 
 import com.example.session3.data.DAO.GroupDao
-import com.example.session3.data.Entity.Group
+import com.example.session3.data.entity.Group
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject

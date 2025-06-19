@@ -7,11 +7,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.session2.R
-import com.example.session2.data.Contact
+import com.example.session2.data.contact.Contact
 import com.example.session2.ui.contact.ContactFragment
 
 class ContactAdapter(
-    private val context: ContactFragment,
     private var contactList: List<Contact>,
     private val onItemClick: (Contact) -> Unit,
     private val onItemLongClick: (Contact) -> Unit,
