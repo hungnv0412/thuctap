@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.session3.R
-import com.example.session3.data.Entity.Group
+import com.example.session3.data.entity.Group
 
 class GroupAdapter(
     private val groupList: MutableList<Group>,
@@ -17,6 +17,7 @@ class GroupAdapter(
         private val view: View,
     ): RecyclerView.ViewHolder(view){
         val nameTextView : TextView = view.findViewById(R.id.textNameGroup)
+        val noteTextView : TextView = view.findViewById(R.id.textNoteGroup)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroupViewHolder {
@@ -28,6 +29,7 @@ class GroupAdapter(
     override fun onBindViewHolder(holder: GroupViewHolder, position: Int) {
         val item = groupList[position]
         holder.nameTextView.text = item.name
+        holder.noteTextView.text = item.note
         holder.itemView.setOnClickListener {
             onItemClick(item)
         }

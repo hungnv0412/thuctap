@@ -9,7 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.session2.R
 import com.example.session2.databinding.AddContactFragmentBinding
-import com.example.session2.data.Contact
+import com.example.session2.data.contact.Contact
 import com.example.session2.viewmodel.ContactViewModel
 import dagger.hilt.android.AndroidEntryPoint
 

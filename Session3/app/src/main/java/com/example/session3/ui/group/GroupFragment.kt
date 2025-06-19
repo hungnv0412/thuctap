@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,6 +14,7 @@ import com.example.session3.adapter.GroupAdapter
 import com.example.session3.viewmodel.GroupViewmodel
 import dagger.hilt.android.AndroidEntryPoint
 import com.example.session3.R
+import com.example.session3.data.entity.Group
 
 @AndroidEntryPoint
 class GroupFragment : androidx.fragment.app.Fragment() {
@@ -36,7 +39,9 @@ class GroupFragment : androidx.fragment.app.Fragment() {
         adapter= GroupAdapter(mutableListOf(), onItemClick = {
             val action = GroupFragmentDirections.actionGroupFragmentToContactGroupFragment(it.id)
             findNavController().navigate(action)
-        }, onItemLongClick = {})
+        }, onItemLongClick = {
+            showDiaglogDelete(group = it)
+        })
 
         recyclerView.adapter = adapter
         val addButton = view.findViewById<com.google.android.material.floatingactionbutton.FloatingActionButton>(R.id.buttonAddGroup)
@@ -47,5 +52,17 @@ class GroupFragment : androidx.fragment.app.Fragment() {
         viewModel.groups.observe (viewLifecycleOwner){groups ->
             adapter.updateGroup(groups)
         }
+    }
+    private fun showDiaglogDelete(group: Group) {
+        val dialog = AlertDialog.Builder(requireContext())
+            .setTitle("Xoá liên hệ")
+            .setMessage("Bạn có chắc chắn muốn xoá ${group.name} không?")
+            .setPositiveButton("Có") { _, _ ->
+                viewModel.deleteGroup(group)
+                Toast.makeText(requireContext(), "Đã xoá ${group.name}", Toast.LENGTH_SHORT).show()
+            }
+            .setNegativeButton("Không", null)
+            .create()
+        dialog.show()
     }
 }

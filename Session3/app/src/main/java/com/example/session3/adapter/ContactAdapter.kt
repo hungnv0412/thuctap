@@ -7,8 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.session3.R
-import com.example.session3.data.Entity.Contact
-import com.example.session3.ui.contact.ContactGroupFragment
+import com.example.session3.data.entity.Contact
 
 class ContactAdapter(
     private val contactList: MutableList<Contact>,
@@ -33,7 +32,6 @@ class ContactAdapter(
         val item = contactList[position]
         holder.nameTextView.text = item.name
         holder.phoneTextView.text = item.phoneNumber
-        holder.avtImageView.setImageResource(item.avatar)
         holder.itemView.setOnClickListener {
             onItemClick(item)
         }

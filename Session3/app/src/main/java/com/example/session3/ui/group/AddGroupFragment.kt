@@ -7,9 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.example.session3.R
 
-import com.example.session3.data.Entity.Group
+import com.example.session3.data.entity.Group
 import com.example.session3.databinding.AddGroupFragmentBinding
 import com.example.session3.viewmodel.GroupViewmodel
 import dagger.hilt.android.AndroidEntryPoint
@@ -40,7 +39,7 @@ class AddGroupFragment : Fragment() {
             }
 
 
-            val group = Group(0,name)
+            val group = Group(0,name,"note here")
             viewModel.addGroup(group)
             val action = AddGroupFragmentDirections.actionAddGroupFragmentToGroupFragment()
             findNavController().navigate(action)

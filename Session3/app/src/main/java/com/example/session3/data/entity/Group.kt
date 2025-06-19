@@ -1,4 +1,4 @@
-package com.example.session3.data.Entity
+package com.example.session3.data.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -7,4 +7,5 @@ import androidx.room.PrimaryKey
 data class Group (
     @PrimaryKey(autoGenerate = true) val id: Int=0,
     val name: String,
+    val note : String,
 )

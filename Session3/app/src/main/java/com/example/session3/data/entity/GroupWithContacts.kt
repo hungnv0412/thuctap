@@ -1,19 +1,19 @@
-package com.example.session3.data.Entity
+package com.example.session3.data.entity
 
 import androidx.room.Embedded
 import androidx.room.Junction
 import androidx.room.Relation
 
-data class ContactWithGroups(
-    @Embedded val contact: Contact,
+data class GroupWithContacts (
+    @Embedded val group: Group,
     @Relation(
         parentColumn = "id",
         entityColumn = "id",
         associateBy = Junction(
             value = ContactGroupCrossRef::class,
-            parentColumn = "contactId",
-            entityColumn = "groupId"
+            parentColumn = "groupId",
+            entityColumn = "contactId"
         )
     )
-    val groups: List<Group>
+    val contacts: List<Contact>
 )

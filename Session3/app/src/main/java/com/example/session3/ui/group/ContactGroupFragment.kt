@@ -12,7 +12,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.session3.adapter.ContactAdapter
-import com.example.session3.data.Entity.Contact
+import com.example.session3.data.entity.Contact
 import com.example.session3.viewmodel.ContactViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import com.example.session3.R

@@ -3,6 +3,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
@@ -11,11 +12,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.session3.adapter.ContactAdapter
-import com.example.session3.data.Entity.Contact
+import com.example.session3.data.entity.Contact
 import com.example.session3.viewmodel.ContactViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import com.example.session3.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import android.text.Editable
+import android.text.TextWatcher
+
 
 @AndroidEntryPoint
 class ContactFragment : Fragment() {
@@ -59,6 +63,22 @@ class ContactFragment : Fragment() {
         addButton.setOnClickListener {
             findNavController().navigate(R.id.action_contactFragment_to_addContactFragment)
         }
+        val searchText = view.findViewById<EditText>(R.id.editTextSearch)
+        searchText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val query = s.toString()
+                if (query.isNotEmpty()) {
+                    viewModel.searchContacts(query)
+                } else {
+                    viewModel.loadContacts()
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
+
 
     }
 
