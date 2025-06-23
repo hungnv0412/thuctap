@@ -69,7 +69,6 @@ class GroupFragment : Fragment() {
         viewModel.groups.observe(viewLifecycleOwner) { groups ->
             groupAdapter.updateGroups(groups)
         }
-        viewModel.refreshGroups()
     }
     private fun showDiaglogDelete(group: Group) {
         val dialog = AlertDialog.Builder(requireContext())
