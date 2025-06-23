@@ -26,6 +26,9 @@ class ContactViewModel @Inject constructor(
     private val _contacts = MutableLiveData<List<Contact>>()
     val contacts: LiveData<List<Contact>> get() = _contacts
     private val ioScope : CoroutineScope = CoroutineScope(Job() + viewModelScope.coroutineContext)
+    init {
+        refreshContacts()
+    }
     fun refreshContacts() {
         ioScope.launch {
             try {
