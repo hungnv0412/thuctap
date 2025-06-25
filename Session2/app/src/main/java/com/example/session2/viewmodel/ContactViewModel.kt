@@ -25,12 +25,11 @@ class ContactViewModel @Inject constructor(
     val isLoading: LiveData<Boolean> get() = _isloading
     private val _contacts = MutableLiveData<List<Contact>>()
     val contacts: LiveData<List<Contact>> get() = _contacts
-    private val ioScope : CoroutineScope = CoroutineScope(Job() + viewModelScope.coroutineContext)
     init {
         refreshContacts()
     }
     fun refreshContacts() {
-        ioScope.launch {
+        viewModelScope.launch {
             try {
                 _isloading.value = true
                 _contacts.value = contactRepository.refreshContacts()
@@ -42,7 +41,7 @@ class ContactViewModel @Inject constructor(
         }
     }
     fun createContact(contact: Contact) {
-        ioScope.launch {
+        viewModelScope.launch {
             try {
                 contactRepository.addContact(contact)
                 refreshContacts()
@@ -55,7 +54,7 @@ class ContactViewModel @Inject constructor(
         return _contacts.value?.find { it.id == id }
     }
     fun deleteContact(id: Int) {
-        ioScope.launch {
+        viewModelScope.launch {
             try {
                 contactRepository.deleteContact(id)
                 refreshContacts()
@@ -65,7 +64,7 @@ class ContactViewModel @Inject constructor(
         }
     }
     fun searchContacts(name: String){
-        ioScope.launch {
+        viewModelScope.launch {
             try {
                 _isloading.value = true
                 _contacts.value = contactRepository.searchContacts(name)
@@ -78,7 +77,7 @@ class ContactViewModel @Inject constructor(
         }
     }
     fun addContactToGroup(contactId: Int, groupId: Int) {
-        ioScope.launch {
+        viewModelScope.launch {
             try {
                 contactRepository.addContactToGroup(contactId, groupId)
             } catch (e: Exception) {
@@ -87,7 +86,7 @@ class ContactViewModel @Inject constructor(
         }
     }
     fun updateContactPhoneNumber(id: Int, phoneNumber: String) {
-        ioScope.launch {
+        viewModelScope.launch {
             try {
                 contactRepository.updateContactPhoneNumber(id, phoneNumber)
                 refreshContacts()
@@ -97,12 +96,12 @@ class ContactViewModel @Inject constructor(
         }
     }
     fun getContactsByGroupId(groupId: Int) {
-        ioScope.launch {
+        viewModelScope.launch {
             _contacts.value = contactRepository.getContactsByGroupId(groupId)
         }
     }
     fun loadContactUsingAsync(){
-        ioScope.launch {
+        viewModelScope.launch {
             _isloading.value= true
             try {
                 val contactDeferred = async { contactRepository.refreshContacts() }
@@ -110,13 +109,8 @@ class ContactViewModel @Inject constructor(
             }catch (e: Exception) {
                 Log.e("ContactViewModel", "Error loading contacts: ${e.message}")
             } finally {
-                _isloading.value=false
+                _isloading.value = false
             }
         }
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        ioScope.cancel()
     }
 }
