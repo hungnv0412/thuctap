@@ -55,15 +55,16 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
 
 
-    implementation ("androidx.camera:camera-core:1.4.2")
-    implementation ("androidx.camera:camera-camera2:1.4.2")
-    implementation ("androidx.camera:camera-lifecycle:1.4.2")
-    implementation ("androidx.camera:camera-video:1.4.2")
+    implementation (libs.androidx.camera.core)
+    implementation (libs.androidx.camera.camera2)
+    implementation (libs.androidx.camera.lifecycle)
+    implementation (libs.androidx.camera.video)
 
-    implementation ("androidx.camera:camera-view:1.4.2")
-    implementation ("androidx.camera:camera-extensions:1.4.2")
+    implementation (libs.androidx.camera.view)
+    implementation (libs.androidx.camera.extensions)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.play.services.location)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -72,6 +73,9 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    implementation("org.tensorflow:tensorflow-lite:2.14.0")
+    implementation("org.tensorflow:tensorflow-lite-gpu:2.14.0")
+    implementation("org.tensorflow:tensorflow-lite-support:0.4.4")
 
     implementation ("com.github.bumptech.glide:glide:4.16.0")
 }
